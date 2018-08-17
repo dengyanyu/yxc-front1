@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>相册管理</title>
+</head>
+<body  ng-app="app" ng-controller="album" class="container text-center" >
+	<div class="nav-top row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-6 nav-title">相册管理  </div>
+			<div class="col-xs-3 text-right">
+			 	<a class=" btn btn-success btn-xs" href="addAlbum.html">新建相册</a>
+			</div>
+	</div>
+	<div class="main row">
+	
+		<div class="col-xs-12 col-sm-6" ng-repeat="a in list">
+			<a href="album.html">
+				<img src="{{a.imgurl}}">
+				<div>{{a.name}}</div>
+			</a>
+		</div>
+		
+		<div><a href="javascript:void(0);" class="btn btn-success" ng-click="getPage(cp+1)">加载更多</a></div>
+		
+	</div>
+	
+	
+	<div class="nav-bottom row">
+		<div class="nav-bottom-item col-xs-3">
+			<div class="nav-icon iconfont icon-md">&#xe65a;</div><a href="/album/index.html">相册</a>
+		</div>
+		<div class="nav-bottom-item col-xs-3 nav-bottom-item-selected">
+			<div class="nav-icon iconfont icon-md">&#xe672;</div><a href="/album/index.html">发现</a>
+		</div>
+		<div class="nav-bottom-item col-xs-3" >
+			<div class="nav-icon iconfont icon-md">&#xe601;</div><a href="/album/index.html">我的</a>
+		</div>
+		<div class="nav-bottom-item col-xs-3">
+			<div class="nav-icon iconfont icon-md">&#xe613;</div><a href="/album/index.html">收藏</a>
+		</div>
+	</div>
+	
+</body>
+
+<link rel="stylesheet" href="../static/css/app.css">
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script>
+var host="../data";
+var app = angular.module('app', []);
+app.controller('album', function($scope,$http) {
+	$scope.cp=1;
+	$scope.list=[];//保存所有数据
+	$scope.getPage=function(p){
+		$scope.cp=p;
+		$http({
+		    method: 'GET',
+		    url: host+'/album/myList'
+		}).then(function successCallback(res) {
+			$scope.list=$scope.list.concat(res.data.data.list);
+		    }, function errorCallback(resp) {
+		        // 请求失败执行代码
+		});
+		/* var page={"code":"1","msg":"操作成功",
+				"data":{
+					pagesize:10,cpage:5,totoleSize:100,pagecount:10,
+					list:[//真实数据
+						{
+							id:1,
+							name:"出国旅游",
+							imgurl:"../static/Chrysanthemum.jpg"
+						},
+						{
+							id:2,
+							name:"自拍",
+							imgurl:"../static/Chrysanthemum.jpg"
+						},
+					]
+				}
+			}; */
+		
+	}
+	
+	$scope.getPage(1);
+});
+</script>
+
+</html>

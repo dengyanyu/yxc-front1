@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>新建相册</title>
+</head>
+<body  ng-app="app" ng-controller="album" class="container text-center" >  
+	<div class="nav-top row">
+			<div class="col-xs-3 text-left">
+				<a class="glyphicon glyphicon-circle-arrow-left" href="addAlbum.html"> </a>
+			</div>
+			<div class="col-xs-6 nav-title">相册管理  </div>
+			<div class="col-xs-3 text-right">
+			 	
+			</div>
+	</div>
+	
+	<form style="margin-top:80px">
+		<div class="form-group">
+			<input class="form-control">
+		</div>
+		<div class="form-group">
+			<textarea class="form-control" placeholder="这里输入相册描述"></textarea>
+		</div>
+		<div class="form-group">
+			<a class="btn btn-success"  href="album.html">确认创建</a>
+		</div>
+	</form	>
+	  
+	 
+</body>
+
+<link rel="stylesheet" href="../static/css/app.css">
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script>
+var app = angular.module('app', []);
+app.controller('album', function($scope) {
+	
+});
+</script>
+
+</html>

@@ -1,0 +1,17 @@
+{"code":"1","msg":"操作成功",
+	"data":{
+		"pagesize":10,"cpage":5,"totoleSize":100,"pagecount":10,
+		"list":[ 
+			{
+				"id":1,
+				"name":"出国旅游",
+				"imgurl":"../static/Chrysanthemum.jpg"
+			},
+			{
+				"id":2,
+				"name":"自拍",
+				"imgurl":"../static/Chrysanthemum.jpg"
+			}
+		]
+	}
+}

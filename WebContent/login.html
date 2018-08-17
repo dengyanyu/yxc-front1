@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登录</title>
+</head>
+<body ng-app="app" ng-controller="login" class="container text-center" style="margin-top:180px;">
+	<form>
+		<div class="form-group">
+			<input class="form-control" placeholder="请输入用户名" ng-model="un">
+		</div>
+		<div class="form-group">
+			<input class="form-control" placeholder="请输入密码" type="password" ng-model="pwd">
+		</div>
+		<div class="form-group row" >
+			<div class="col-xs-6 text-left">
+				<a href="reg.html" class="btn btn-info">注册</a>
+			</div>
+			<div class="col-xs-6 text-right">
+				<a class="btn btn-success" href="javascript:void(0)" ng-click="dologin()">登陆</a>
+			</div>
+		</div>
+	</form	>
+</body>
+
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script>
+var host="./data";
+var app = angular.module('app', []);
+app.controller('login', function($scope,$http) {
+	$scope.dologin=function(){
+		
+		$http({
+		    method: 'GET',
+		    url: host+'/login',
+		    param:{un:$scope.un,pwd:$scope.pwd}
+		}).then(function successCallback(res) {
+			if(res.data.data.flag=="true"){
+				alert("登陆成功");
+				location="album/index.html";
+			}else{
+				alert("登陆失败");
+				
+			}
+			
+		    }, function errorCallback(resp) {
+		        // 请求失败执行代码
+		});
+		
+		 
+		
+		
+	}
+});
+</script>
+</html>

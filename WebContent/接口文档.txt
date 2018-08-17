@@ -1,0 +1,63 @@
+基础变量：	
+	host:127.0.0.1:8080
+	公共返回代码code
+		-1:必须登陆才能操作
+		-2:没有权限
+		-3:服务器处理出错
+		1:操作成功
+		2:请求次数达上限
+1 登陆 
+	url:http://{{host}}/login
+	method:post
+	param: 
+			un:用户名
+			pwd:密码
+	return:
+		code:返回代码 参考公共返回代码
+		msg:提示信息
+		data:{
+			flag:"true"//返回是否登陆成功
+		}
+	示例:{"code":"1","msg":"操作成功","data":{"flag":"true"}}
+2 注册接口
+	
+3 相册列表 （按照时间排序）
+	url:http://{{host}}/album/myList/{cpage}
+	method:post
+	param: 
+			{cpage}:当前页数
+	return:
+		code:返回代码 参考公共返回代码
+		msg:提示信息
+		data:{
+			pagesize:10,//页面长度
+			cpage:5,//当前页
+			totoleSize:100,//总条数
+			pagecount:10,//页长
+			list:[//真实数据
+				{
+					id:1,
+					name:"出国旅游",
+					imgurl:"相册封面"
+				},
+			]
+		}
+	示例:{"code":"1","msg":"操作成功",
+			"data":{
+				pagesize:10,cpage:5,totoleSize:100,pagecount:10,
+				list:[//真实数据
+					{
+						id:1,
+						name:"出国旅游",
+						imgurl:"../static/Chrysanthemum.jpg"
+					},
+					{
+						id:2,
+						name:"自拍",
+						imgurl:"../static/Chrysanthemum.jpg"
+					},
+				]
+			}
+		}
+
+4 新建相册接口 
